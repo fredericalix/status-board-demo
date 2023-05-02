@@ -68,6 +68,15 @@ Here are some example `curl` commands to interact with the API:
   curl -X GET http://localhost:8080/status
   ```
 
+### Unit Tests
+
+Set the `POSTGRESQL_ADDON_URI` environment variable to your PostgreSQL connection string.
+
+```
+cd backend-server
+go test -v ./api
+```
+
 ### Swagger Documentation
 
 To view the API documentation using Swagger, visit the following URL:
