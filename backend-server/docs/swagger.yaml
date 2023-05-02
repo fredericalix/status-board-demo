@@ -1,0 +1,125 @@
+definitions:
+  model.Status:
+    properties:
+      designation:
+        type: string
+      id:
+        type: integer
+      state:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /:
+    get:
+      description: Récupérer le status de l'API
+      produces:
+      - text/plain
+      responses:
+        "200":
+          description: hello from clever cloud
+          schema:
+            type: string
+      summary: Récupérer le status de l'API
+  /events:
+    get:
+      description: Listens for real-time notifications using SSE
+      produces:
+      - text/event-stream
+      responses:
+        "200":
+          description: SSE connection established
+          schema:
+            type: string
+      summary: Server-Sent Events (SSE) notifications
+  /status:
+    get:
+      description: Récupère la liste de tous les status
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.Status'
+            type: array
+      summary: Récupérer tous les status
+    post:
+      consumes:
+      - application/json
+      description: Ajoute un nouveau status à la base de données
+      parameters:
+      - description: Status à ajouter
+        in: body
+        name: status
+        required: true
+        schema:
+          $ref: '#/definitions/model.Status'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/model.Status'
+      summary: Créer un nouveau status
+  /status/{id}:
+    delete:
+      description: Supprime un status de la base de données
+      parameters:
+      - description: ID du status à supprimer
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+          schema:
+            type: string
+      summary: Supprimer un status
+    get:
+      description: Récupère un status spécifique par son ID
+      parameters:
+      - description: ID du status à récupérer
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Status'
+      summary: Récupérer un status par son ID
+    put:
+      consumes:
+      - application/json
+      description: Met à jour un status existant dans la base de données
+      parameters:
+      - description: ID du status à modifier
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Nouvelles données du status
+        in: body
+        name: status
+        required: true
+        schema:
+          $ref: '#/definitions/model.Status'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Status'
+      summary: Modifier un status existant
+swagger: "2.0"
