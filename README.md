@@ -89,8 +89,46 @@ Replace `localhost` with your server's hostname if you're not running the applic
 
 ## Frontend
 
-<TODO>
+The frontend-server directory contains a Vue.js frontend application for displaying notifications fetched from the backend-server API.
+The application uses the Vue.js framework, and it includes features like real-time updates through SSE.
 
+### Features
+
+- Fetches notifications from a backend API
+- Displays notifications as colored squares
+- Real-time updates with Server-Sent Events (SSE)
+- Responsive and clean design
+### Installation and Setup
+
+1. Change the working directory to the frontend's root folder:
+
+```
+cd frontend-server
+```
+
+1. Install the required dependencies:
+
+```
+npm install
+```
+
+4. Define the `API_URL` environment variable if you want to point to a different backend API URL. If not set, the default value will be `http://localhost:8080`.
+
+```
+export API_URL="http://yourbackendurl.com"
+```
+
+5. Start the development server:
+
+```
+npm run serve
+```
+
+The Vue.js frontend application should now be running on `http://localhost:8081` (or another available port).
+
+### Usage
+
+Open the application in your browser and observe the notifications displayed as colored squares. The squares' colors correspond to the `state` attribute of each notification.
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
