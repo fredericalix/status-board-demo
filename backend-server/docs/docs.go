@@ -33,6 +33,24 @@ const docTemplate = `{
                 }
             }
         },
+        "/crash": {
+            "get": {
+                "description": "Cette route provoque un crash de l'application avec un code de retour 1 après un délai de 3 secondes.",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Provoque un crash du programme",
+                "operationId": "crash",
+                "responses": {
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/model.CrashResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/events": {
             "get": {
                 "description": "Listens for real-time notifications using SSE",
@@ -187,6 +205,14 @@ const docTemplate = `{
         }
     },
     "definitions": {
+        "model.CrashResponse": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
         "model.Status": {
             "type": "object",
             "properties": {

@@ -1,4 +1,9 @@
 definitions:
+  model.CrashResponse:
+    properties:
+      message:
+        type: string
+    type: object
   model.Status:
     properties:
       designation:
@@ -22,6 +27,19 @@ paths:
           schema:
             type: string
       summary: Récupérer le status de l'API
+  /crash:
+    get:
+      description: Cette route provoque un crash de l'application avec un code de
+        retour 1 après un délai de 3 secondes.
+      operationId: crash
+      produces:
+      - application/json
+      responses:
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model.CrashResponse'
+      summary: Provoque un crash du programme
   /events:
     get:
       description: Listens for real-time notifications using SSE

@@ -5,8 +5,11 @@ import (
 	"backend-server/model"
 	"backend-server/sse"
 	"database/sql"
+	"fmt"
 	"net/http"
+	"os"
 	"strconv"
+	"time"
 
 	"github.com/labstack/echo/v4"
 )
@@ -194,4 +197,24 @@ func GetAllStatus(c echo.Context) error {
 	}
 
 	return c.JSON(http.StatusOK, statusList)
+}
+
+// @Summary Provoque un crash du programme
+// @Description Cette route provoque un crash de l'application avec un code de retour 1 après un délai de 3 secondes.
+// @ID crash
+// @Produce  json
+// @Success 500 {object} model.CrashResponse
+// @Router /crash [get]
+func CrashApp(c echo.Context) error {
+	response := &model.CrashResponse{
+		Message: "Crash de l'appli dans 3 secondes",
+	}
+
+	go func() {
+		time.Sleep(3 * time.Second)
+		fmt.Println("Le programme va crasher avec un code de retour 1.")
+		os.Exit(1)
+	}()
+
+	return c.JSON(http.StatusInternalServerError, response)
 }

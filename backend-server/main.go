@@ -122,6 +122,7 @@ func main() {
 	e.GET("/status/:id", api.GetStatusByID)
 	e.GET("/status", api.GetAllStatus)
 	e.GET("/events", sse.SSEHandler(b))
+	e.GET("/crash", api.CrashApp)
 
 	// Démarrage du serveur. Le port par def est le 8080. Il peut être defini par la variable d'env PORT
 	port := os.Getenv("PORT")
