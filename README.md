@@ -41,13 +41,13 @@ Here are some example `curl` commands to interact with the API:
 - Create a new status:
 
   ```sh
-  curl -X POST -H "Content-Type: application/json" -d '{"designation": "Sample Status", "state": "Active"}' http://localhost:8080/status
+  curl -X POST -H "Content-Type: application/json" -d '{"designation": "Sample Status", "state": "green"}' http://localhost:8080/status
   ```
 
 - Update an existing status (replace `<id>` with the status ID):
 
   ```sh
-  curl -X PUT -H "Content-Type: application/json" -d '{"designation": "Updated Status", "state": "Inactive"}' http://localhost:8080/status/<id>
+  curl -X PUT -H "Content-Type: application/json" -d '{"designation": "Updated Status", "state": "red"}' http://localhost:8080/status/<id>
   ```
 
 - Delete a status (replace `<id>` with the status ID):
