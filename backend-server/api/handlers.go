@@ -49,7 +49,8 @@ func CreateStatus(b *sse.SSEBroker) echo.HandlerFunc {
 			return err
 		}
 
-		b.NotifyClients("Status créé")
+		in := `{"notif":"creation"}`
+		b.NotifyClients(in)
 
 		return c.JSON(http.StatusCreated, d)
 	}
@@ -87,7 +88,8 @@ func UpdateStatus(b *sse.SSEBroker) echo.HandlerFunc {
 			return err
 		}
 
-		b.NotifyClients("Status mis à jour")
+		in := `{"notif":"modif"}`
+		b.NotifyClients(in)
 
 		return c.JSON(http.StatusOK, d)
 	}
@@ -127,8 +129,8 @@ func DeleteStatus(b *sse.SSEBroker) echo.HandlerFunc {
 			return echo.NewHTTPError(http.StatusNotFound, "Status not found")
 		}
 
-		b.NotifyClients("Status supprimé")
-
+		in := `{"notif":"suppr"}`
+		b.NotifyClients(in)
 		return c.NoContent(http.StatusNoContent)
 	}
 }

@@ -108,7 +108,8 @@ func main() {
 			case notification := <-notificationChannel:
 				log.Println("Received notification:", notification)
 				// Traiter le message ici
-				b.NotifyClients("Mise à jour de la table status")
+				in := `{"notif":"maj status"}`
+				b.NotifyClients(in)
 			}
 		}
 	}()
