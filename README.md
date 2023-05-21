@@ -112,19 +112,19 @@ cd frontend-server
 npm install
 ```
 
-4. Define the `API_URL` environment variable if you want to point to a different backend API URL. If not set, the default value will be `http://localhost:8080`.
+4. Define the `REACT_APP_API_URL` environment variable if you want to point to a different backend API URL. If not set, the default value will be `http://localhost:8080`.
 
 ```
-export API_URL="http://yourbackendurl.com"
+export REACT_APP_API_URL="http://yourbackendurl.com"
 ```
 
 5. Start the development server:
 
 ```
-npm run serve
+npm run dev
 ```
 
-The Vue.js frontend application should now be running on `http://localhost:8081` (or another available port).
+The React frontend application should now be running on `http://localhost:3000` (or another available port).
 
 ### Usage
 
