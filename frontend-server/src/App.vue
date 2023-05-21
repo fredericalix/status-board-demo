@@ -32,14 +32,14 @@ export default {
   async created() {
     // Récupération des notifications depuis l'API lors du chargement de l'application frontend
     try {
-      const response = await axios.get(`${API_URL}/notifications`);
+      const response = await axios.get(`${API_URL}/status`);
       this.notifications = response.data;
     } catch (error) {
       console.error('Erreur lors de la récupération des notifications:', error);
     }
 
     // Écoute des mises à jour des notifications via Server-Sent Events (SSE)
-    const eventSource = new EventSource(`${API_URL}/notifications/updates`);
+    const eventSource = new EventSource(`${API_URL}/events`);
     eventSource.onmessage = (event) => {
       const updatedNotification = JSON.parse(event.data);
       this.updateNotification(updatedNotification);
