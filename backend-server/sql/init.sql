@@ -1,3 +1,8 @@
+CREATE TABLE IF NOT EXISTS status (
+    id SERIAL PRIMARY KEY,
+    designation VARCHAR(255) NOT NULL,
+    state VARCHAR(5) CHECK (state IN ('green', 'red')) NOT NULL
+);
 -- Création de la fonction de déclenchement
 CREATE OR REPLACE FUNCTION notify_status_update()
 RETURNS TRIGGER AS $$
